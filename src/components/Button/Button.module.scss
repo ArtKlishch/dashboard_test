@@ -1,0 +1,19 @@
+@import "../../index.scss";
+
+.Button {
+  display: inline-block;
+  padding: 9px 16px;
+  width: fit-content;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: $white;
+  border: none;
+  outline: none;
+  background-color: $darkblue400;
+  cursor: pointer;
+  border-radius: 4px;
+  &:active,
+  &:hover {
+    opacity: 0.8;
+  }
+}

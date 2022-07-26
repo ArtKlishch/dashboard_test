@@ -1,0 +1,21 @@
+@import "../../../index.scss";
+
+.SignInForm {
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 115px;
+  margin-top: 60%;
+  &__title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    color: $darkblue400;
+    margin-bottom: 31px;
+  }
+  &__btnExtraStyle {
+    margin-top: 20px;
+    align-self: flex-end;
+  }
+}

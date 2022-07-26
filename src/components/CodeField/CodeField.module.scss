@@ -1,0 +1,52 @@
+@import "../../index.scss";
+
+.CodeField {
+  &__subtitle {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+  &__fieldwrapper {
+    display: flex;
+    &_fieldblock {
+      position: relative;
+      flex-grow: 1;
+      .fieldinputwrap {
+        padding: 0 25px;
+        &__field {
+          width: 100%;
+          outline: none;
+          border: none;
+          height: 38px;
+          font-family: "Roboto", sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          letter-spacing: 52px;
+          color: rgba(0, 0, 0, 0.87);
+        }
+      }
+    }
+    &_underscores {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .item {
+        height: 1px;
+        background-color: $grey200;
+        width: calc(100% / 6 - 5px);
+      }
+      .filled {
+        background-color: $darkblue400;
+      }
+    }
+    &_resetBtn {
+      cursor: pointer;
+    }
+  }
+}

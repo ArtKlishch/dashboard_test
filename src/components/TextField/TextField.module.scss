@@ -1,0 +1,27 @@
+@import "../../index.scss";
+
+.TextField {
+  display: flex;
+  flex-direction: column;
+  &__label {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.4px;
+    color: $grey400;
+    margin-bottom: 8px;
+  }
+  &__field, &__field:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid $grey200;
+    height: 38px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
