@@ -1,10 +1,9 @@
 @import "../../index.scss";
 
-.TextField {
+.DateField {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  
   &__input {
     border: none;
     border-radius: 0px;
@@ -20,21 +19,6 @@
     padding-left: 0px;
   }
 
-    &__inputWithIcon {
-    border: none;
-    border-radius: 0px;
-    border-bottom: 1px solid $grey200;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.25px;
-    color: $black;
-    padding-top: 8px;
-    padding-bottom: 9px;
-    padding-left: 36px
-  }
-
   &__label {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -43,9 +27,5 @@
     letter-spacing: 0.4px;
     color: $grey400;
     margin-bottom: 8px;
-  }
-
-  &__icon {
-    padding-bottom: 5px;
   }
 }

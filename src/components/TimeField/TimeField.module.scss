@@ -1,0 +1,78 @@
+@import "../../index.scss";
+
+.TimeField {
+  &__label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: $grey800;
+  }
+
+  &__content {
+    display: flex;
+    padding: 10px 0px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(84, 110, 123, 0.2);
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+
+    &_input {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      width: 40px;
+      text-align: center;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: $black;
+    }
+
+    &_button {
+      margin-right: 11px;
+      background-color: inherit;
+      padding: 0px;
+      border: none;
+      display: flex;
+      align-items: center;
+    }
+  }
+  // &__button {
+  //     margin-right: 11px;
+  //     background-color: inherit;
+  //     padding: 0px;
+  //     border: none;
+  //     display: flex;
+  //     align-items: center;
+  //   }
+
+  //   &__rightSection {
+  //     width: 45px;
+  //   }
+
+  //   &__input {
+  //     border: none;
+  //     border-radius: 0px;
+  //     border-bottom: 1px solid $grey200;
+  //     padding-left: 0px;
+  //     // font-weight: 400;
+  //     // font-size: 14px;
+  //     display: flex;
+  //     align-items: center;
+  //     line-height: 20px;
+  //   }
+
+  //   &__label {
+  //   font-family: 'Roboto', sans-serif;
+  //   font-weight: 400;
+  //   font-size: 12px;
+  //   line-height: 15px;
+  //   letter-spacing: 0.4px;
+  //   color: $grey400;
+  //   margin-bottom: 8px;
+  // }
+}

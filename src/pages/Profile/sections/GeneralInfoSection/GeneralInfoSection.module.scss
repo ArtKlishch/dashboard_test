@@ -1,0 +1,58 @@
+@import '../../../../index.scss';
+
+.GeneralInfoSection {
+  box-sizing: border-box;
+  border: 1px solid $grey200;
+  display: flex;
+  justify-content: space-between;
+
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+
+  &__leftSide {
+    padding: 16px 20px 24px;
+    &_title {
+      font-family: 'Robot', sans-serif;
+      font-weight: 500px;
+      font-size: 20px;
+      line-height: 32px;
+      color: $darkblue400;
+      margin-bottom: 18px;
+    }
+
+    &_container{
+    display: flex;
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+
+    & > div {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+  }
+  }
+
+  &__rightSide {
+    padding: 20px 0px 24px;
+    &_title {
+      font-family: 'Robot', sans-serif;
+      font-weight: 500px;
+      font-size: 16px;
+      line-height: 32px;
+      color: $darkblue400;
+      margin-bottom: 17px;
+    }
+
+    &_container {
+      box-sizing: border-box;
+      padding-left: 20px;
+      padding-right: 19px;
+      border-left: 1px solid $grey200;
+      height: 100%;
+    }
+  }
+}

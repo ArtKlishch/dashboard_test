@@ -1,0 +1,12 @@
+@import '../../index.scss';
+
+.PageLayout {
+  display: flex;
+  flex-grow: 1;
+  &_leftCol {
+    background-color: $darkblue400;
+  }
+  &_rightCol {
+    width: 100%;
+  }
+}

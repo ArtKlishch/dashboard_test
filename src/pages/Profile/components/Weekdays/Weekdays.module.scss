@@ -1,0 +1,30 @@
+@import "../../../../index.scss";
+
+.Weekdays {
+  width: 223px;
+  &__wrapper {
+    padding-bottom: 10px;
+    border-bottom: 2px solid $grey800;
+
+    &_title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: $grey800
+    }
+  }
+
+  &__container {
+    margin-top: 16px;
+    margin-bottom: 12px;
+
+  }
+
+  &__addButton {
+    width: 100%;
+    background-color: $grey100;
+    padding: 4px 4px;
+    border: 0px;
+  }
+}

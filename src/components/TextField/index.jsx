@@ -1,22 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./TextField.module.scss";
+import { TextInput } from '@mantine/core'
+import { patchUserCrmProfile } from "../../api";
+import {useSelector} from "react-redux"
 
-const TextField = ({ label, name, type = "text", value, onChange }) => {
+const TextField = ({
+  label,
+  placeholder,
+  defaultValue,
+  width,
+  icon,
+  extrastyles,
+  userId,
+  path
+}) => {
+  const user = useSelector(state => state.user)
+  const [value, setValue] = useState(defaultValue ? defaultValue : '')
+
+  const handleBlurInput = () => {
+    patchUserCrmProfile({path, value, token: user.token, userId}).then(res => console.log(res))
+  }
+
+  const handleChangeInput = (event) => {
+    setValue(event.target.value)
+  }
+
+  const inputClass = `${classes.TextField} ${extrastyles}`
   return (
-    <div className={classes.TextField}>
-      <label className={classes.TextField__label} htmlFor={name}>
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        className={classes.TextField__field}
-        type={type}
+    <div style={{ width: width ? width : '100%' }} className={inputClass}>
+      <TextInput
+        onBlur={handleBlurInput}
+        icon={icon}
+        label={label}
+        placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        classNames={{
+          input: `${
+            icon ? classes.TextField__inputWithIcon : classes.TextField__input
+          }`,
+          label: classes.TextField__label,
+          icon: classes.TextField__icon
+        }}
+        onChange={handleChangeInput}
       />
     </div>
-  );
-};
+  )
+}
 
 export default TextField;

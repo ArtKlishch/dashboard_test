@@ -1,0 +1,11 @@
+@import "../../../../index.scss";
+
+.EnterMailSection {
+  &__inputExtraStyle {
+    margin-top: 31px;
+  }
+  &__btnExtraStyle {
+    margin-top: 20px;
+    align-self: flex-end;
+  }
+}

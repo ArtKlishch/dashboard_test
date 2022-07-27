@@ -1,0 +1,96 @@
+@import "../../../../index.scss";
+
+.EnterCodeSection {
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 115px;
+  margin-top: 60%;
+  
+  &__btnExtraStyle {
+    margin-top: 20px;
+    align-self: flex-end;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+  
+  &__codeInput {
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $grey200;
+    width: 46px;
+    padding: 9px 0px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: $black;
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
+    &:focus {
+    border-bottom: 2px solid $darkblue400;
+    }
+  }
+
+  &__crossButton {
+    background-color: inherit;
+    border: none;
+    padding: 0px;
+    margin-left: 15px;
+  }
+
+  &__description {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: $black;
+    margin-bottom: 22px;
+    margin-top: 20px;
+
+    &_onError {
+      margin-top: 16px;
+    }
+  }
+
+  &__notice {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.4px;
+    color: $grey400;
+    margin-top: 24px;
+
+  }
+
+  &__warning {
+    padding: 6px;
+    background-color: rgb(175, 39, 39, 0.1);
+    border-radius: 4px;
+    margin-top: 13px;
+
+    &_text {
+      display: flex;
+      align-items: center;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.25px;
+      color: $red;
+    }
+
+    &_icon {
+      margin-right: 10px;
+    }
+  }
+}

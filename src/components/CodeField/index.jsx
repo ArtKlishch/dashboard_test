@@ -1,5 +1,5 @@
 import classes from "./CodeField.module.scss";
-import { ReactComponent as ResetBtn } from "../../assets/icons/cross_icon1.svg";
+import { ReactComponent as ResetBtn } from "../../assets/icons/cross.svg";
 
 const CodeField = ({ onChange, value }) => {
   return (

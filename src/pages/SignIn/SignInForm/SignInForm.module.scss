@@ -6,6 +6,7 @@
   flex-direction: column;
   margin-left: 115px;
   margin-top: 60%;
+
   &__title {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
@@ -14,8 +15,47 @@
     color: $darkblue400;
     margin-bottom: 31px;
   }
+
   &__btnExtraStyle {
     margin-top: 20px;
     align-self: flex-end;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__codeInput {
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $grey200;
+    width: 46px;
+    padding: 9px 0px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: $black;
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
+    &:focus {
+    border-bottom: 2px solid $darkblue400;
+    }
+
+    // &_bordered {
+    //   border-bottom: 2px solid $darkblue400;
+    // }
+  }
+
+  &__crossButton {
+    background-color: inherit;
+    border: none;
+    padding: 0px;
+    margin-left: 15px;
   }
 }
