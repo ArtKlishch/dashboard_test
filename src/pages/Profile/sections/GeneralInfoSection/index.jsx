@@ -7,36 +7,41 @@ import { useEffect } from "react"
 import { getCurrentAppUser } from "../../../../api"
 import { useSelector, useDispatch } from 'react-redux'
 import { setUserInfo } from "../../../../redux/actions"
+import { findLabel } from "../../../../utils"
+import CheckboxField from "../../../../components/CheckboxField"
 
 
 const GeneralInfoSection = () => {
   const dispatch = useDispatch((state) => state.dispatch)
   const user = useSelector((state) => state.user)
   const userInfo = useSelector((state) => state.userInfo)
-
+  const labels = useSelector((state) => state.labels)
   useEffect(() => {
-    getCurrentAppUser(user.token).then((res) => dispatch(setUserInfo(res)))
-  }, [dispatch, user.token])
+    if (!userInfo) {
+      getCurrentAppUser(user.token)
+        .then((res) => dispatch(setUserInfo(res)))
+        .catch(console.log)
+    }
+  }, [dispatch, user.token, userInfo])
 
   return (
     <div className={classes.GeneralInfoSection}>
-      {userInfo && (
+      {userInfo && labels && (
         <>
           <div className={classes.GeneralInfoSection__leftSide}>
             <h4 className={classes.GeneralInfoSection__leftSide_title}>
-              General Info
+              {findLabel('general-info', labels)}
             </h4>
             <div className={classes.GeneralInfoSection__leftSide_container}>
               <TextField
-                placeholder="First name"
-                label="First name"
+                label={findLabel('first-name', labels)}
                 defaultValue={userInfo.firstName}
                 width="223px"
                 path="firstName"
                 userId={userInfo.appUserID}
               />
               <TextField
-                label="Last name"
+                label={findLabel('last-name', labels)}
                 placeholder="Last name"
                 defaultValue={userInfo.lastName}
                 width="223px"
@@ -45,7 +50,7 @@ const GeneralInfoSection = () => {
               />
               <DateField
                 defaultValue={userInfo.dateOfBirth}
-                label="Date of birth"
+                label={findLabel('date-of-birth', labels)}
                 width="223px"
                 path="dateOfBirth"
                 userId={userInfo.appUserID}
@@ -53,7 +58,7 @@ const GeneralInfoSection = () => {
             </div>
             <div className={classes.GeneralInfoSection__leftSide_container}>
               <TextField
-                label="Email"
+                label={findLabel('email', labels)}
                 placeholder="b.simmons@mail.com"
                 width="345px"
                 defaultValue={userInfo.email}
@@ -61,34 +66,43 @@ const GeneralInfoSection = () => {
                 userId={userInfo.appUserID}
               />
               <TextField
-                label="Personal Email"
+                label={findLabel('personal-email', labels)}
                 placeholder="b.simmons@mail.com"
                 width="345px"
                 defaultValue={userInfo.personalEmail}
                 path="personalEmail"
                 userId={userInfo.appUserID}
+                type="email"
               />
               <TextField
-                placeholder="Mobile Phone"
+                placeholder={findLabel('mobile-phone', labels)}
                 width="325px"
                 defaultValue={userInfo.mobilePhone}
                 path="mobilePhone"
                 userId={userInfo.appUserID}
+                type="number"
               />
             </div>
             <div className={classes.GeneralInfoSection__leftSide_container}>
               <DateField
-                label="Start Date"
+                label={findLabel('start-date', labels)}
                 width="223px"
                 defaultValue={userInfo.startDate}
                 path="startDate"
                 userId={userInfo.appUserID}
               />
               <TextField
-                label="Absences"
+                label={findLabel('absences', labels)}
                 width="108px"
                 defaultValue={userInfo.absences}
                 path="absences"
+                userId={userInfo.appUserID}
+                type="number"
+              />
+              <CheckboxField
+                label={findLabel('core-team', labels)}
+                defaultValue={userInfo.isCoreTeamMember}
+                path="isCoreTeamMember"
                 userId={userInfo.appUserID}
               />
             </div>
@@ -99,20 +113,22 @@ const GeneralInfoSection = () => {
                 My accounts
               </h5>
               <TextField
-                label="Slack"
+                label={findLabel('slack', labels)}
                 icon={<SlackIcon />}
-                placeholder="Enter you slack user name"
+                placeholder={findLabel('enter-slack-name', labels)}
                 width="345px"
                 defaultValue={userInfo.slackUserName}
                 path="slackUserName"
+                userId={userInfo.appUserID}
               />
               <TextField
-                label="Slack"
+                label={findLabel('github', labels)}
                 icon={<GitHubIcon />}
                 placeholder="Enter your github user name"
                 width="345px"
                 defaultValue={userInfo.gitHubUserName}
                 path="gitHubUserName"
+                userId={userInfo.appUserID}
               />
             </div>
           </div>

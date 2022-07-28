@@ -3,6 +3,21 @@
 .SignIn {
   display: flex;
   flex-grow: 1;
+
+  &__copyrights {
+    position: absolute;
+    bottom: 20px;
+    left: 30%;
+    right: 30%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    color: $grey400
+  }
+
   &__leftcol {
     background-color: $grey100;
     width: 50%;

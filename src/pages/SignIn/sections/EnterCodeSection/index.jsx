@@ -3,8 +3,11 @@ import { ReactComponent as CrossIcon } from '../../../../assets/icons/cross.svg'
 import { ReactComponent as ErrorIcon } from '../../../../assets/icons/error.svg'
 import Button from "../../../../components/Button"
 import AuthCode from "react-auth-code-input"
+import { useSelector } from 'react-redux'
+import { findLabel } from '../../../../utils'
 
-const EnterCodeSection = ({error, onChange}) => {
+const EnterCodeSection = ({ error, onChange }) => {
+  const labels = useSelector(state => state.labels)
 
 
   return (
@@ -13,7 +16,7 @@ const EnterCodeSection = ({error, onChange}) => {
         <div className={classes.EnterCodeSection__warning}>
           <p className={classes.EnterCodeSection__warning_text}>
             <ErrorIcon className={classes.EnterCodeSection__warning_icon} />
-            {error}
+            {findLabel('invalid-login', labels)}
           </p>
         </div>
       )}
@@ -22,8 +25,7 @@ const EnterCodeSection = ({error, onChange}) => {
           error && classes.EnterCodeSection__description_onError
         }`}
       >
-        To finalize your verification, please enter the code that has been sent
-        to your email address / SMS
+        {findLabel('code-title', labels)}
       </p>
       <div className={classes.EnterCodeSection__container}>
         <AuthCode
@@ -40,7 +42,7 @@ const EnterCodeSection = ({error, onChange}) => {
         extrastyles={classes.EnterCodeSection__btnExtraStyle}
         type="submit"
       >
-        Submit
+        {findLabel('submit', labels)}
       </Button>
       <p className={classes.EnterCodeSection__notice}>
         If you do not receive the confirmation message within a few minutes,

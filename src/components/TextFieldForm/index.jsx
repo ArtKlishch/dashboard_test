@@ -9,17 +9,19 @@ const TextField = ({
   width,
   icon,
   extrastyles,
+  error,
+  required
 }) => {
-
   const inputClass = `${classes.TextField} ${extrastyles}`
   return (
     <div style={{ width: width ? width : '100%' }} className={inputClass}>
       <TextInput
+        required={required}
         onBlur={onBlur}
         icon={icon}
         label={label}
         placeholder={placeholder}
-        value={value }
+        value={value}
         classNames={{
           input: `${
             icon ? classes.TextField__inputWithIcon : classes.TextField__input
@@ -28,6 +30,7 @@ const TextField = ({
           icon: classes.TextField__icon
         }}
         onChange={onChange}
+        error={error ? <p>Error</p> : null}
       />
     </div>
   )

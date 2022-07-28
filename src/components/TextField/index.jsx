@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import classes from "./TextField.module.scss";
 import { TextInput } from '@mantine/core'
 import { patchUserCrmProfile } from "../../api";
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import { changeUserInfo } from "../../redux/actions";
 
 const TextField = ({
   label,
@@ -12,13 +13,24 @@ const TextField = ({
   icon,
   extrastyles,
   userId,
-  path
+  path,
+  type
 }) => {
+  const dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const [value, setValue] = useState(defaultValue ? defaultValue : '')
 
   const handleBlurInput = () => {
-    patchUserCrmProfile({path, value, token: user.token, userId}).then(res => console.log(res))
+    const data = {
+      path,
+      value: type === 'number' ? Number.parseInt(value) : value,
+      token: user.token,
+      userId
+    }
+
+    patchUserCrmProfile(data).then(() =>
+      dispatch(changeUserInfo({path, value}))
+    )
   }
 
   const handleChangeInput = (event) => {
@@ -42,6 +54,7 @@ const TextField = ({
           icon: classes.TextField__icon
         }}
         onChange={handleChangeInput}
+        type={type}
       />
     </div>
   )

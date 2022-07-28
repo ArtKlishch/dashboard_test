@@ -6,6 +6,12 @@ export const getGlobalParameters = () => {
   )
 }
 
+export const getLabels = (defaultLanguageID) => {
+  return fetch(
+    `${URL}/Labels/GetAllDynamic?Select=labelKey,title&&languageID='${defaultLanguageID}'`
+  ).then((res) => res.json())
+}
+
 export const generatePassword = (data) => {
   return fetch(`${URL}/Accounts/GeneratePassword`, {
     method: 'POST',
@@ -52,14 +58,61 @@ export const getUserCrmProfileWorklogs = (token) => {
   }).then((res) => res.json())
 }
 
-export const patchUserCrmProfile = (data) => {
-  return fetch(`${URL}/UserCrmProfiles/Patch/${data.userId}`, {
+export const patchUserCrmProfile = ({ token, path, value, userId }) => {
+  return fetch(`${URL}/UserCrmProfiles/Patch/${userId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${data.token}`
+      Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify([{ path: data.path, value: data.value }])
+    body: JSON.stringify([{ path, value }])
   }).then((res) => res.json())
 }
+
+export const createUserCrmProfileWorklogs = ({
+  token,
+  dayOfWeek,
+  fromTime,
+  toTime,
+  userCrmProfileID
+}) => {
+  return fetch(`${URL}/UserCrmProfileWorklogs/Create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      userCrmProfileID,
+      dayOfWeek,
+      fromTime,
+      toTime,
+    })
+  }).then((res) => res.json())
+}
+
+export const deteleUserCrmProfileWorklogs = ({id, token}) => {
+  return fetch(`${URL}/UserCrmProfileWorklogs/Delete/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  }).then((res) => res.json())
+}
+
+export const patchUserCrmProfileWorklogs = ({ token, path, value, id }) => {
+  return fetch(`${URL}/UserCrmProfileWorklogs/Patch/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify([{ path, value}])
+  }).then((res) => res.json())
+}
+

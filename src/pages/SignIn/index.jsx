@@ -7,8 +7,10 @@ import EnterMailSection from "./sections/EnterMailSection";
 import EnterCodeSection from "./sections/EnterCodeSection"
 import Form from "./layouts/Form"
 import { setUser } from "../../redux/actions";
+import { findLabel } from "../../utils";
 
 const SignIn = () => {
+  const labels = useSelector(state => state.labels)
   const dispatch = useDispatch()
   const globalParameters = useSelector((state) => state.globalParameters)
   const [step, setStep] = useState(1)
@@ -16,39 +18,34 @@ const SignIn = () => {
   const [code, setCode] = useState('')
   const [error, setError] = useState(null)
 
-  const handleSubmitFirstForm = async (event) => {
-    event.preventDefault()
-    try {
-      const result = await generatePassword({
-        email,
-        languageId: globalParameters.languageId
+  const handleSubmitFirstForm = (event) => {
+  event.preventDefault()
+    generatePassword({
+      email,
+      languageId: globalParameters.languageId
+    })
+      .then((res) => {
+        if (res === 'done') {
+          setStep(2)
+        }
       })
-      if (result !== 'done') {
-        throw new Error('400')
-      }
-      setError(null)
-      setStep(2)
-    } catch (error) {
-      setError(error.message)
-    }
+      .catch(console.log)
   }
 
-  const handleSubmitSecondForm = async (event) => {
+  const handleSubmitSecondForm = (event) => {
     event.preventDefault()
-    try {
-      const result = await loginWithCode({
-        email,
-        code,
-        languageId: globalParameters.languageId
-      })
-      if (!result.jwt) {
-        throw new Error(result)
+    loginWithCode({
+      email,
+      code,
+      languageId: globalParameters.languageId
+    }).then(res => {
+      if (!res.jwt) {
+        throw new Error(res)
       }
+
       setError(null)
-      dispatch(setUser(result.jwt))
-    } catch (error) {
-      setError(error.message)
-    }
+      dispatch(setUser(res.jwt))
+    }).catch(error => setError(error.message))
   }
 
   const handleEmailInputChange = (event) => setEmail(event.target.value)
@@ -61,7 +58,6 @@ const SignIn = () => {
         <PlaygroundImage className={classes.SignIn__leftcol_img} />
       </aside>
       <aside className={classes.SignIn__rightcol}>
-        {/* <SignInForm /> */}
         <Form
           onSubmit={step === 1 ? handleSubmitFirstForm : handleSubmitSecondForm}
         >
@@ -69,10 +65,19 @@ const SignIn = () => {
             <EnterMailSection value={email} onChange={handleEmailInputChange} />
           )}
           {step === 2 && (
-            <EnterCodeSection value={code} error={error} onChange={handleCodeInputChange} />
+            <EnterCodeSection
+              value={code}
+              error={error}
+              onChange={handleCodeInputChange}
+            />
           )}
         </Form>
       </aside>
+      {labels && (
+        <p className={classes.SignIn__copyrights}>
+          {findLabel('copyrights', labels)}
+        </p>
+      )}
     </div>
   )
 };

@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 import routes from "../../routes";
 import { logoutUser } from "../../api";
 import { useDispatch, useSelector } from "react-redux/es/exports";
-import { setUser } from "../../redux/actions";
+import { setGlobalParameters, setLabels, setUser, setUserInfo, setWorklogs } from "../../redux/actions";
+import { findLabel } from "../../utils";
 
 const Dashboard = () => {
+  const labels = useSelector((state) => state.labels)
   const user = useSelector(state => state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -17,31 +19,40 @@ const Dashboard = () => {
     navigate(routes.profile)
   }
 
-  const handleLogoutButtonClick = async () => {
-    await logoutUser(user.token)
-    dispatch(setUser(null))
+  const handleLogoutButtonClick = () => {
+    logoutUser(user.token).then(() => {
+      dispatch(setUser(null))
+      dispatch(setUserInfo(null))
+      dispatch(setLabels(null))
+      dispatch(setGlobalParameters(null))
+      dispatch(setWorklogs(null))
+    }).catch(console.log)
   }
 
   return (
     <PageLayout>
-      <div className={classes.Dashboard}>
-        <div className={classes.Dashboard__container}>
-          <DashboardImg className={classes.Dashboard__image} />
-          <h3 className={classes.Dashboard__title}>COMING SOON</h3>
-          <Button
-            extrastyles={classes.Dashboard__navButton}
-            onClick={handleNavButtonClick}
-          >
-            edit my profile and my worklog
-          </Button>
-          <button
-            className={classes.Dashboard__logoutButton}
-            onClick={handleLogoutButtonClick}
-          >
-            LOGOUT
-          </button>
+      {labels && (
+        <div className={classes.Dashboard}>
+          <div className={classes.Dashboard__container}>
+            <DashboardImg className={classes.Dashboard__image} />
+            <h3 className={classes.Dashboard__title}>
+              {findLabel('coming-soon', labels)}
+            </h3>
+            <Button
+              extrastyles={classes.Dashboard__navButton}
+              onClick={handleNavButtonClick}
+            >
+              {findLabel('edit-profile-and-worklog', labels)}
+            </Button>
+            <button
+              className={classes.Dashboard__logoutButton}
+              onClick={handleLogoutButtonClick}
+            >
+              {findLabel('logout', labels)}
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </PageLayout>
   )
 };
