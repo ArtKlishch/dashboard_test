@@ -1,5 +1,5 @@
 import { Checkbox } from "@mantine/core"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { patchUserCrmProfile } from "../../api"
 import { changeUserInfo } from "../../redux/actions"

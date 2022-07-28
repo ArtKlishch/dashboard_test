@@ -80,7 +80,6 @@ const GeneralInfoSection = () => {
                 defaultValue={userInfo.mobilePhone}
                 path="mobilePhone"
                 userId={userInfo.appUserID}
-                type="number"
               />
             </div>
             <div className={classes.GeneralInfoSection__leftSide_container}>

@@ -59,6 +59,7 @@ export const getUserCrmProfileWorklogs = (token) => {
 }
 
 export const patchUserCrmProfile = ({ token, path, value, userId }) => {
+  console.log(value)
   return fetch(`${URL}/UserCrmProfiles/Patch/${userId}`, {
     method: 'PATCH',
     headers: {

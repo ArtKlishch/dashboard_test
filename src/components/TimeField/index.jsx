@@ -2,7 +2,7 @@ import { ReactComponent as CrossIcon } from "../../assets/icons/cross.svg"
 import {ReactComponent as ClockIcon} from "../../assets/icons/clock.svg"
 import { useState } from 'react'
 import classes from "./TimeField.module.scss"
-import { Box, Select } from "@mantine/core"
+import { Select } from "@mantine/core"
 import { time } from "../../mockData"
 import { patchUserCrmProfileWorklogs } from "../../api"
 import { useSelector, useDispatch } from 'react-redux'

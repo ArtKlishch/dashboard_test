@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import classes from './EnterMailSection.module.scss'
 import Button from "../../../../components/Button"
 import TextField from "../../../../components/TextFieldForm"

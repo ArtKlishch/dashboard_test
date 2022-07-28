@@ -7,7 +7,6 @@ import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute"
-import { Select } from "@mantine/core";
 
 function App() {
   const user = useSelector(state => state.user)
