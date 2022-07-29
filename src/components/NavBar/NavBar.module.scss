@@ -18,4 +18,11 @@
       margin-bottom: 26px;
     }
   }
+
+  &__refreshButton {
+    padding: 0px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+  }
 }

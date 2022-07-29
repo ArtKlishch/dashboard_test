@@ -31,8 +31,6 @@ const EnterCodeSection = ({ error, onChange }) => {
         <AuthCode
           onChange={onChange}
           inputClassName={classes.EnterCodeSection__codeInput}
-          // containerClassName={classes.SignInForm__codeContainer}
-          // containerClassName={{}}
         />
         <button type="button" className={classes.EnterCodeSection__crossButton}>
           <CrossIcon />

@@ -64,6 +64,7 @@ const GeneralInfoSection = () => {
                 defaultValue={userInfo.email}
                 path="email"
                 userId={userInfo.appUserID}
+                type="email"
               />
               <TextField
                 label={findLabel('personal-email', labels)}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import classes from "./TextField.module.scss";
-import { TextInput } from '@mantine/core'
 import { patchUserCrmProfile } from "../../api";
 import {useDispatch, useSelector} from "react-redux"
 import { changeUserInfo } from "../../redux/actions";
@@ -39,24 +38,22 @@ const TextField = ({
 
   const inputClass = `${classes.TextField} ${extrastyles}`
   return (
-    <div style={{ width: width ? width : '100%' }} className={inputClass}>
-      <TextInput
-        onBlur={handleBlurInput}
-        icon={icon}
-        label={label}
-        placeholder={placeholder}
-        value={value}
-        classNames={{
-          input: `${
+    <label style={{ width: width ? width : '100%' }} className={inputClass}>
+      {label}
+      <div className={classes.TextField__wrapper}>
+        <div className={classes.TextField__icon}>{icon}</div>
+        <input
+          onBlur={handleBlurInput}
+          placeholder={placeholder}
+          value={value}
+          className={`${
             icon ? classes.TextField__inputWithIcon : classes.TextField__input
-          }`,
-          label: classes.TextField__label,
-          icon: classes.TextField__icon
-        }}
-        onChange={handleChangeInput}
-        type={type}
-      />
-    </div>
+          }`}
+          onChange={handleChangeInput}
+          type={type}
+        />
+      </div>
+    </label>
   )
 }
 

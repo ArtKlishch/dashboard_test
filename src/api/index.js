@@ -22,7 +22,7 @@ export const generatePassword = (data) => {
   }).then((res) => res.json())
 }
 
-export const loginWithCode= (data) => {
+export const loginWithCode = (data) => {
   return fetch(`${URL}/Accounts/LoginWithCOde`, {
     method: 'POST',
     headers: {
@@ -30,6 +30,16 @@ export const loginWithCode= (data) => {
     },
     body: JSON.stringify(data)
   }).then((res) => res.json())
+}
+
+export const refreshToken = (data) => {
+  return fetch(`${URL}/Accounts/RefreshToken`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json())
 }
 
 export const logoutUser = (token) => {

@@ -34,6 +34,7 @@ const EnterMailSection = ({ value, onChange}) => {
           onChange={onChange}
           extrastyles={classes.EnterMailSection__inputExtraStyle}
           required
+          type="email"
         />
       </div>
       <Button

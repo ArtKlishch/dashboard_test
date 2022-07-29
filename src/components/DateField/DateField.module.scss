@@ -4,7 +4,32 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.4px;
+  color: $grey400;
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+
+    &_icon {
+      position: absolute;
+      right: 0px;
+      height: 100%;
+      width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+  }
+
   &__input {
+    width: 100%;
+    box-sizing: border-box;
     border: none;
     border-radius: 0px;
     border-bottom: 1px solid $grey200;
@@ -17,15 +42,11 @@
     padding-top: 8px;
     padding-bottom: 9px;
     padding-left: 0px;
-  }
-
-  &__label {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.4px;
-    color: $grey400;
-    margin-bottom: 8px;
+    &:active, 
+    &:hover, 
+    &:focus {
+    outline: 0;
+    outline-offset: 0;
+    }
   }
 }

@@ -1,57 +1,38 @@
-import { ReactComponent as CrossIcon } from "../../assets/icons/cross.svg"
-import {ReactComponent as ClockIcon} from "../../assets/icons/clock.svg"
+import { ReactComponent as TickIcon } from '../../assets/icons/tick.svg'
+import { ReactComponent as ClockIcon } from '../../assets/icons/clock.svg'
 import { forwardRef, useState } from 'react'
-import classes from "./TimeField.module.scss"
+import classes from './CreateTimeField.module.scss'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { patchUserCrmProfileWorklogs } from "../../api"
+import { createUserCrmProfileWorklogs } from '../../api'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeWorklogs } from "../../redux/actions"
-import { format, parse } from 'date-fns'
+import { addWorklog } from '../../redux/actions'
+import { format } from 'date-fns'
 
-const TimeField = ({ label, width, item, handleDeleteButtonClick }) => {
+const CreateTimeField = ({ label, width, dayOfWeek, setCreate }) => {
+  const userInfo = useSelector((state) => state.userInfo)
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
-  const [fromTime, setFromTime] = useState(parse(item.fromTime, 'HH:mm', new Date()))
-  const [toTime, setToTime] = useState(parse(item.toTime, 'HH:mm', new Date()))
+  const user = useSelector((state) => state.user)
+  const [fromTime, setFromTime] = useState(null)
+  const [toTime, setToTime] = useState(null)
 
-  const handleBlurFromInput = (value) => {
-    patchUserCrmProfileWorklogs({
-      token: user.token,
-      path: 'fromTime',
-      value: format(value, 'HH:mm'),
-      id: item.id
-    }).then(() =>
-      dispatch(
-        changeWorklogs({
-          path: 'fromTime',
-          value: format(value, 'HH:mm'),
-          id: item.id
-        })
-      )
-    )
-  }
-
-
-  const handleBlurToInput = (value) => {
-    patchUserCrmProfileWorklogs({
-      token: user.token,
-      path: 'toTime',
-      value: format(value, 'HH:mm'),
-      id: item.id
-    }).then(() =>
-      dispatch(
-        changeWorklogs({
-          path: 'toTime',
-          value: format(value, 'HH:mm'),
-          id: item.id
-        })
-      )
-    )
+  const handleCreateButtonClick = () => {
+    if (fromTime && toTime) {
+      createUserCrmProfileWorklogs({
+        token: user.token,
+        dayOfWeek: dayOfWeek,
+        fromTime: format(fromTime, 'HH:mm'),
+        toTime: format(toTime, 'HH:mm'),
+        userCrmProfileID: userInfo.appUserID
+      }).then((res) => {
+        setCreate(prevState => !prevState)
+        dispatch(addWorklog(res))
+      })
+    }
   }
 
   const Input = forwardRef(
-    ({ onChange, placeholder, value, id, onClick}, ref) => (
+    ({ onChange, placeholder, value, id, onClick }, ref) => (
       <input
         ref={ref}
         onChange={onChange}
@@ -76,7 +57,6 @@ const TimeField = ({ label, width, item, handleDeleteButtonClick }) => {
             selected={fromTime}
             onChange={(date) => {
               setFromTime(date)
-              handleBlurFromInput(date)
             }}
             showTimeSelect
             showTimeSelectOnly
@@ -92,7 +72,6 @@ const TimeField = ({ label, width, item, handleDeleteButtonClick }) => {
             selected={toTime}
             onChange={(date) => {
               setToTime(date)
-              handleBlurToInput(date)
             }}
             showTimeSelect
             showTimeSelectOnly
@@ -107,9 +86,9 @@ const TimeField = ({ label, width, item, handleDeleteButtonClick }) => {
         <div className={classes.TimeField__wrapper}>
           <button
             className={classes.TimeField__wrapper_button}
-            onClick={() => handleDeleteButtonClick(item.id)}
+            onClick={handleCreateButtonClick}
           >
-            <CrossIcon />
+            <TickIcon />
           </button>
           <ClockIcon />
         </div>
@@ -118,5 +97,4 @@ const TimeField = ({ label, width, item, handleDeleteButtonClick }) => {
   )
 }
 
-export default TimeField
-
+export default CreateTimeField
