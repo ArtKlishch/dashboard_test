@@ -7,6 +7,7 @@ import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg'
 import { ReactComponent as RefreshIcon } from '../../assets/icons/refresh.svg'
 import { setUser } from "../../redux/actions"
 import classes from "./NavBar.module.scss"
+import routes from "../../routes"
 
 const NavBar = () => {
   const dispatch = useDispatch()
@@ -22,11 +23,11 @@ const NavBar = () => {
       <button className={classes.NavBar__burgerButton}>
         <BurgerIcon />
       </button>
-      <NavLink to="/dashboard" className={classes.NavBar__navLinks}>
-        <DashboardIcon fill={pathname === '/dashboard' ? 'white' : '#95A2A7'} />
+      <NavLink to={routes.dashboard} className={classes.NavBar__navLinks}>
+        <DashboardIcon fill={pathname === routes.dashboard ? 'white' : '#95A2A7'} />
       </NavLink>
-      <NavLink to="/profile" className={classes.NavBar__navLinks}>
-        <ProfileIcon fill={pathname === '/profile' ? 'white' : '#95A2A7'} />
+      <NavLink to={routes.profile} className={classes.NavBar__navLinks}>
+        <ProfileIcon fill={pathname === routes.profile ? 'white' : '#95A2A7'} />
       </NavLink>
       <button
         className={classes.NavBar__refreshButton}

@@ -1,0 +1,38 @@
+.ConfirmPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  &__dialog {
+    padding: 20px;
+    background-color: #fff;
+    width: 200px;
+    position: absolute;
+    top: calc(100vh / 2 - 100px);
+    &_text {
+      margin: 20px;
+      text-align: center;
+    }
+    &_btns {
+      display: flex;
+      justify-content: center;
+      button {
+        border: 1px solid black;
+        outline: none;
+        padding: 10px 20px;
+        color: #fff;
+      }
+      button:first-child {
+        background-color: blue;
+        margin-right: 5px;
+      }
+      button:last-child {
+        background-color: red;
+      }
+    }
+  }
+}
