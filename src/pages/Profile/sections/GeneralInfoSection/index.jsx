@@ -109,9 +109,9 @@ const GeneralInfoSection = () => {
           </div>
           <div className={classes.GeneralInfoSection__rightSide}>
             <div className={classes.GeneralInfoSection__rightSide_container}>
-              <h5 className={classes.GeneralInfoSection__rightSide_title}>
+              <h4 className={classes.GeneralInfoSection__rightSide_title}>
                 My accounts
-              </h5>
+              </h4>
               <TextField
                 label={findLabel('slack', labels)}
                 icon={<SlackIcon />}

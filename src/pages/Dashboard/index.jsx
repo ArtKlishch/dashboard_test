@@ -4,20 +4,30 @@ import Button from "../../components/Button"
 import PageLayout from "../../layouts/PageLayout";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes";
-import { logoutUser } from "../../api";
+import { getLabels, logoutUser } from "../../api";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { setGlobalParameters, setLabels, setUser, setUserInfo, setWorklogs } from "../../redux/actions";
 import { findLabel } from "../../utils";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const labels = useSelector((state) => state.labels)
   const user = useSelector(state => state.user)
+  const globalParameters = useSelector((state) => state.globalParameters)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const handleNavButtonClick = () => {
     navigate(routes.profile)
   }
+
+  useEffect(() => {
+    if (!labels && globalParameters) {
+      getLabels(globalParameters.defaultLanguageID)
+        .then((res) => dispatch(setLabels(res.value)))
+        .catch(console.log)
+    }
+  }, [dispatch, globalParameters, labels])
 
   const handleLogoutButtonClick = () => {
     logoutUser(user.token).then(() => {
